@@ -160,11 +160,17 @@ storiesOf("Button", module)
 .add("Error",()=> (<Error message="Could not delete appointment."
 onClose={action("onClose")}
  />))
- .add("Form",()=> ( <Form
-  name={''}
+ .add("Form on Creat",()=> ( <Form
   interviewers={interviewers}
-  interviewer={interviewers[0].id}
   onSave={action("onSave")}
   onCancel={action("onCancel")}
   />
+))
+.add("Form on Edit", () => (<Form
+ name="jhon"
+ interviewers={interviewers}
+ interviewer={interviewers[0].id}
+ onSave={action("onSave")}
+ onCancel={action("onCancel")}
+/>
 ))

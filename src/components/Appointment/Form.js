@@ -3,10 +3,18 @@ import InterviewerList from 'components/InterviewerList';
 import Button from "components/Button";
 
 export default function Header(props) {
-  const [name, setName] = useState(props.name)
-  const [interviewer, setInterviewer] = useState(props.interviewer)
-  
-  const onChange = (event)=> {
+const [name, setName] = useState(props.name || "");
+const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const reset = ()=> {
+    setName("");
+    setInterviewer(null);
+  }
+
+  const cancel = () => {
+    reset();
+    props.onCancel();
+  }
+    const onChange = (event)=> {
     setName(event.target.value)
   }
   
@@ -23,6 +31,7 @@ export default function Header(props) {
         value={name}
         onChange={onChange}
         
+        
         /*
           This must be a controlled component
         */
@@ -34,8 +43,8 @@ export default function Header(props) {
   
   <section className="appointment__card-right">
     <section className="appointment__actions">
-      <Button danger onClick={props.onCancel}></Button>
-      <Button confirm onClick={props.onSave}></Button>
+      <Button danger onClick={cancel} >Cancel</Button>
+      <Button confirm onClick={props.onSave}>Save</Button>
     </section>
   </section>
 </main>
