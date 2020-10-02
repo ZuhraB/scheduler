@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import DayList from "components/DayList"
 import "components/Application.scss";
+import InterviewerList from 'components/InterviewerList';
 import Appointment from 'components/Appointment';
+import { getAppointmentsForDay, getInterview } from "../helpers/selectors";
 
 
 const appointments = [
@@ -64,9 +66,19 @@ Promise.all([
 setState(prev => ({...prev, days: response[0].data, appointments: response[1].data, interviewers: response[2].data }));
 },[])
 
-console.log("inter",state.interviewers)
-// const apptList = appointments.map(appointment => {
-//   return <Appointment key={appointment.id} {...appointment} />;
+// const appointments = getAppointmentsForDay(state, day);
+
+// const schedule = appointments.map((appointment) => {
+//   const interview = getInterview(state, appointment.interview);
+
+//   return (
+//     <Appointment
+//       key={appointment.id}
+//       id={appointment.id}
+//       time={appointment.time}
+//       interview={interview}
+//     />
+//   );
 // });
 
   return (
