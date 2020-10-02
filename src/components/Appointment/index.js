@@ -3,6 +3,9 @@ import "./styles.scss";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Header from "components/Appointment/Header";
+import useVisualMode from "../../hooks/useVisualMode";
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
 export default function Appointment(props) {
 return <article className="appointment">
 <Fragment>
