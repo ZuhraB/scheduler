@@ -19,9 +19,8 @@ return <article className="appointment">
    { props.interview ? (<Show interviewer={props.interview.interviewer}
     student={props.interview.student}
     onEdit={()=>{}}
-    onDelet={()=>{}}/>) : <Empty/> 
-    }
-    {mode === EMPTY && <Empty onAdd={(props.onAdd)} onAdd={(() => transition(CREATE))} />}
+    onDelet={()=>{}}/>) : 
+    mode === EMPTY && <Empty onAdd={(props.onAdd)} onAdd={(() => transition(CREATE))} />}
 {mode === SHOW && (
   <Show
     student={props.interview.student}
@@ -30,8 +29,7 @@ return <article className="appointment">
 }
  {mode === CREATE &&
   (<Form
-    interviewers={[]}
-    //onSave={}
+    interviewers={props.interviewers}
     onCancel={back}
   />)
 }

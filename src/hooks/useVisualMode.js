@@ -6,11 +6,13 @@ export function useVisualMode(initial) {
   const [ history, setHistory ] = useState([ initial ]);
 
   function transition(currentMode, replace = false) {
-    if (currentMode !== mode) {
-      setMode(currentMode);
-        history.push(currentMode)
-      setHistory([ ...history ]);
+    setMode(currentMode); 
+    if (replace) {
+      history[history.length- 1] = currentMode;
+    } else {
+      history.push(currentMode)
     }
+    setHistory([ ...history ]);
   }
 
   function back() {

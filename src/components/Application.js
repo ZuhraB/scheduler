@@ -5,7 +5,7 @@ import DayList from "components/DayList"
 import "components/Application.scss";
 import InterviewerList from 'components/InterviewerList';
 import Appointment from 'components/Appointment';
-import { getAppointmentsForDay, getInterview } from "../helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
 
 
 
@@ -39,9 +39,10 @@ setState(prev => ({
 console.log("interviewers", state.interviewers)
 
 const appointments = getAppointmentsForDay(state, state.day);
-
+console.log("appoitments",appointments)
 const schedule = appointments.map((appointment) => {
   const interview = getInterview(state, appointment.interview);
+  const interviewers= getInterviewersForDay(state, state.day)
 
   return (
     <Appointment
@@ -49,9 +50,11 @@ const schedule = appointments.map((appointment) => {
       id={appointment.id}
       time={appointment.time}
       interview={interview}
+      interviewers = {interviewers}
     />
   );
 });
+
 
   return (
     <main className="layout">

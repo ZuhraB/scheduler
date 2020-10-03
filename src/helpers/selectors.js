@@ -21,3 +21,12 @@ export function getInterview(state, interview) {
 
 }
 }
+export function getInterviewersForDay(state, day) {
+  const daysFound = state.days.find(i => day === i.name);
+
+  if (!state.days || daysFound === undefined) return [];
+
+  return daysFound.interviewers.map(id => state.interviewers[id]);
+}
+
+
