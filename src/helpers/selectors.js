@@ -1,4 +1,4 @@
-import { stat } from "fs";
+//import { stat } from "fs";
 
 export function getAppointmentsForDay(state, day) {
   const daysInDay = state.days.map(day => day.name);
