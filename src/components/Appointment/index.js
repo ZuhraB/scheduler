@@ -15,14 +15,6 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
   
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };//after api I do a .then to Show
-    props.bookInterview(interview)
-    transition(SHOW);
-  }
   console.log("mode:", mode)
 return <article className="appointment">
 <Fragment>
@@ -38,7 +30,13 @@ return <article className="appointment">
  {mode === CREATE &&
   (<Form
    interviewers={props.interviewers}
-   onSave={(name, interviewer) => save(name, interviewer)}
+   onSave={(name, interviewer) => props.bookInterview(props.id, 
+      {
+        student: name,
+        interviewer
+      }
+    ).then( () => transition(SHOW)) 
+    }
    onCancel={back}
   />)
 }

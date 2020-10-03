@@ -55,35 +55,25 @@ const schedule = appointments.map((appointment) => {
     />
   );
 });
+//books interviews 
  function bookInterview(id, interview) {
-  const appointment = {
-    ...state.appointments[id],
-    interview: { ...interview }
-  };
-  const appointments = {
-    ...state.appointments,
-    [id]: appointment
-  };
-  setState({
-    ...state,
-    appointments
-  });
-}
-
-// return axios.put(`/api/appointments/${id}`, newAppointment)
-//   .then((_res) => {
-//     console.log(`PUT /api/appointments/${id}`, res);
-//     setState({
-//       appointments: {
-//         ...state.appointments,
-//         [id]: newAppointment
-//       }
-//     });
-//   })
-//   .catch((err) => console.log(`PUT /api/appointments/${id}`, err));
-
-
-
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    console.log("Appointment:",appointment)
+    return axios.put(`/api/appointments/${id}`, appointment)
+    .then((res) => {
+      setState({
+        ...state,
+        appointments: {
+          ...state.appointments,
+          [id]: appointment
+        }
+      });
+    })
+    .catch((err) => console.log(`PUT /api/appointments/${id}`, err));
+  }
 
   return (
     <main className="layout">
