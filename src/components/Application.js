@@ -7,8 +7,6 @@ import InterviewerList from 'components/InterviewerList';
 import Appointment from 'components/Appointment';
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
 
-
-
 export default function Application(props) {
   const [state, setState] = useState({
     day: "",
@@ -21,6 +19,7 @@ export default function Application(props) {
   const setDay = (day) => {
       setState({...state,day})
 }
+
 useEffect(() => {
 Promise.all([
   axios.get('/api/days'),
@@ -36,13 +35,14 @@ setState(prev => ({
 }));
 })
 }, [])
-console.log("interviewers", state.interviewers)
 
+//returns an array of ids of appointments for each day
 const appointments = getAppointmentsForDay(state, state.day);
-console.log("appoitments",appointments)
 const schedule = appointments.map((appointment) => {
+  //returns an object of student name and interviewer
   const interview = getInterview(state, appointment.interview);
   const interviewers= getInterviewersForDay(state, state.day)
+  
 
   return (
     <Appointment
@@ -51,9 +51,38 @@ const schedule = appointments.map((appointment) => {
       time={appointment.time}
       interview={interview}
       interviewers = {interviewers}
+      bookInterview={bookInterview}
     />
   );
 });
+ function bookInterview(id, interview) {
+  const appointment = {
+    ...state.appointments[id],
+    interview: { ...interview }
+  };
+  const appointments = {
+    ...state.appointments,
+    [id]: appointment
+  };
+  setState({
+    ...state,
+    appointments
+  });
+}
+
+// return axios.put(`/api/appointments/${id}`, newAppointment)
+//   .then((_res) => {
+//     console.log(`PUT /api/appointments/${id}`, res);
+//     setState({
+//       appointments: {
+//         ...state.appointments,
+//         [id]: newAppointment
+//       }
+//     });
+//   })
+//   .catch((err) => console.log(`PUT /api/appointments/${id}`, err));
+
+
 
 
   return (
