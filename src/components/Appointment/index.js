@@ -6,6 +6,7 @@ import Header from "components/Appointment/Header";
 import  {useVisualMode} from "hooks/useVisualMode";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
+const CREATE  = "CREATE ";
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -18,7 +19,7 @@ return <article className="appointment">
     onEdit={()=>{}}
     onDelet={()=>{}}/>) : <Empty/> 
     }
-    {mode === EMPTY && <Empty onAdd={() => console.log("Clicked onAdd")} />}
+    {mode === EMPTY && <Empty onAdd={(props.onAdd)} onAdd={(() => transition(CREATE))} />}
 {mode === SHOW && (
   <Show
     student={props.interview.student}
