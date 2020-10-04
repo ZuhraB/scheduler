@@ -52,6 +52,7 @@ const schedule = appointments.map((appointment) => {
       interview={interview}
       interviewers = {interviewers}
       bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
     />
   );
 });
@@ -73,6 +74,23 @@ const schedule = appointments.map((appointment) => {
       });
     })
     .catch((err) => console.log(`PUT /api/appointments/${id}`, err));
+  }
+  //cancel interviews
+  function cancelInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    }
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+    return axios.delete(`/api/appointments/${id}`, {interview})
+      .then(() => setState ({
+        ...state,
+        appointments
+      }));
+      
   }
 
   return (
