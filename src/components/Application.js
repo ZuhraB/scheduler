@@ -62,9 +62,9 @@ const schedule = appointments.map((appointment) => {
       ...state.appointments[id],
       interview: { ...interview }
     };
-    console.log("Appointment:",appointment)
     return axios.put(`/api/appointments/${id}`, appointment)
     .then((res) => {
+      console.log("res", res)
       setState({
         ...state,
         appointments: {
@@ -73,10 +73,9 @@ const schedule = appointments.map((appointment) => {
         }
       });
     })
-    .catch((err) => console.log(`PUT /api/appointments/${id}`, err));
   }
   //cancel interviews
-  function cancelInterview(id, interview) {
+  function cancelInterview(id,interview) {
     const appointment = {
       ...state.appointments[id],
       interview: {...interview}
@@ -85,7 +84,7 @@ const schedule = appointments.map((appointment) => {
       ...state.appointments,
       [id]: appointment
     }
-    return axios.delete(`/api/appointments/${id}`, {interview})
+    return axios.delete(`http://localhost:8080/api/appointments${id}`, {interview})
       .then(() => setState ({
         ...state,
         appointments
