@@ -1,4 +1,4 @@
-import React,{ Fragment }from "react";
+import React from "react";
 import "./styles.scss";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
@@ -36,11 +36,9 @@ export default function Appointment(props) {
   }
   function cancel() {
     transition(DELETE);
-    //transition(DELETE,true);
     const interview = null;
     props.cancelInterview(props.id, interview)
       .then(() => transition(EMPTY))
-      //.then(() => transition(EMPTY, true))
       .catch((err) => {
         transition(ERROR_DELETE, true);
       });
