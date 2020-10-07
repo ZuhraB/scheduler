@@ -43,7 +43,7 @@ export default function Appointment(props) {
         transition(ERROR_DELETE, true);
       });
   }
-return <article className="appointment">
+return <article data-testid="appointment">
   <Header time={props.time}/>
   {mode === SHOW && (<Show
     student={props.interview.student}

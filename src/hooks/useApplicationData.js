@@ -29,9 +29,11 @@ export function useApplicationData() {
   const remainingSpots = (state) => {
     const newState = { ...state };
     const days = newState.days.map((day) => {
+      //console.log("day", day.appointments)
       const spots = day.appointments.reduce((spots, id) => {
-        // console.log(`spots inside reduce with day=${day.name}:`, spots)
+         console.log(`spots inside reduce with day=${day}:`, spots)
         if (newState.appointments[id].interview === null) {
+          //console.log("newStat",newState.appointments[id].interview )
           return spots + 1;
         }
         return spots;
@@ -46,11 +48,13 @@ export function useApplicationData() {
   };
 
   function bookInterview(id, interview) {
+    
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
     };
-    return axios.put(`/api/appointments/${id}`, appointment).then((res) => {
+    console.log("appointment:", appointment)
+    return axios.put(`/api/appointments/${id}`, appointment).then(() => {
       setState((prev) => ({
         ...prev,
         appointments: {
