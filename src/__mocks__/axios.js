@@ -100,7 +100,17 @@ export default {
         status: 204,
         statusText: "No Content",
         data: fixtures.interviewers
-      }) 
+      })
     }
-  })
+  }),
+  delete: jest.fn(url => {
+    if (url.startsWith( "/api/appointments")) {
+        return Promise.resolve({
+          status: 204,
+          statusText: "No Content",
+          data: fixtures.appointments
+        })
+  
+ }
+}),
 }

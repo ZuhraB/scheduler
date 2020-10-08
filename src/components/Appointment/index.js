@@ -57,12 +57,12 @@ return <article data-testid="appointment">
   {mode === DELETE && <Status message={DELETE}/>}
   {mode === CONFIRM &&<Confirm message={"Are you sure you want to Delete"}
    onConfirm={cancel} onCancel={back}/>}
-{mode === EDIT && <Form name={props.interview.student}
-interviewer={props.interview.interviewer.id} interviewers={props.interviewers}
-onSave={save} onCancel={back}/>}
-{mode === ERROR_SAVE &&<Error
-message={"Error during saving data..."}
-onClose={back}/>}{mode === ERROR_DELETE &&
+  {mode === EDIT && <Form name={props.interview.student}
+    interviewer={props.interview.interviewer.id} interviewers={props.interviewers}
+    onSave={save} onCancel={back}/>}
+  {mode === ERROR_SAVE &&<Error
+    message={"Error during saving data..."}
+    onClose={back}/>}{mode === ERROR_DELETE &&
 <Error message={"Error during deleting data..."}
 onClose={back}/>}
 </article>

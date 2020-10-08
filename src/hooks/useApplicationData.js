@@ -29,26 +29,19 @@ export function useApplicationData() {
   const remainingSpots = (state) => {
     const newState = { ...state };
     const days = newState.days.map((day) => {
-      //console.log("day", day.appointments)
       const spots = day.appointments.reduce((spots, id) => {
          console.log(`spots inside reduce with day=${day}:`, spots)
         if (newState.appointments[id].interview === null) {
-          //console.log("newStat",newState.appointments[id].interview )
           return spots + 1;
         }
         return spots;
       }, 0);
-
-      // console.log("spots:", spots)
-
       return { ...day, spots };
     });
-    // console.log("new days obj:", days);
     return days;
   };
 
   function bookInterview(id, interview) {
-    
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -69,7 +62,6 @@ export function useApplicationData() {
       }));
     });
   }
-  //cancel interviews
   function cancelInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
