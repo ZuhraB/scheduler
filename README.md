@@ -7,7 +7,7 @@ The technologies that are used in this project include: React, SASS, WebPack, Ba
 you can visit it online at  https://http://localhost:8000/. 
 
 # This is how the final project looks like: 
-!["Screenshot initial page of scheduler app"](https://github.com/ZuhraB/scheduler/blob/master/docs/Initial%20Page.png?raw=true
+!["Screenshot initial page of scheduler app"](https://github.com/ZuhraB/scheduler/blob/master/docs/Initial%20Page.png?raw=true)
 !["Screenshot booking a new appointment scheduler app"](https://github.com/ZuhraB/scheduler/blob/master/docs/Book-A-New-Appointement.png?raw=true)
 !["Screenshot confirming before deleteing an appointment scheduler app"](https://github.com/ZuhraB/scheduler/blob/master/docs/Confirmation-Before-Delete.png?raw=true)
 !["Screenshot deleting status scheduler app"](https://github.com/ZuhraB/scheduler/blob/master/docs/Deleting-Status.png?raw=true)
