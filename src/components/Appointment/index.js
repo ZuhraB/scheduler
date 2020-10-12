@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.scss";
+//*** imports all the file 
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Header from "components/Appointment/Header";
@@ -8,6 +9,7 @@ import Form from "components/Appointment/Form";
 import Confirm from "components/Appointment/Confirm";
 import Error from "components/Appointment/Error";
 import  {useVisualMode} from "hooks/useVisualMode";
+//*** Constants to use for modes  */
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE  = "CREATE ";
@@ -17,25 +19,29 @@ const CONFIRM = "CONFIRM"
 const EDIT   = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE"
 const ERROR_DELETE = "ERROR_DELETE"
+
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview? SHOW : EMPTY
   );
   function save(name, interviewer) {
-     transition(SAVE)
+    // This if statment checks if interviewer is null or not
+    if (interviewer) {
     const interview = {
       student: name,
       interviewer
-    }
+    };
+    transition(SAVE, true)
     props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW, true))
+    .then(() => transition(SHOW))
     .catch((err) => {
       transition(ERROR_SAVE, true);
     });
+  }
     
   }
   function cancel() {
-    transition(DELETE);
+    transition(DELETE, true);
     const interview = null;
     props.cancelInterview(props.id, interview)
       .then(() => transition(EMPTY))

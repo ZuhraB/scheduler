@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import InterviewerList from 'components/InterviewerList';
 import Button from "components/Button";
 
-export default function Header(props) {
+export default function Form(props) {
 const [name, setName] = useState(props.name || "");
 const [interviewer, setInterviewer] = useState(props.interviewer || null);
 const [error, setError] = useState("")
@@ -20,7 +20,10 @@ const [error, setError] = useState("")
   }
   function validate() {
     if (name === "") {
-      setError("Student name cannot be blank");
+      setError("Student name cannot be blank!");
+      return;
+    } else if (interviewer === null) {
+      setError("Please select an interviewer!")
       return;
     }
     setError("");
@@ -38,13 +41,6 @@ const [error, setError] = useState("")
         value={name}
         onChange={onChange}
         data-testid="student-name-input"
-        
-        
-        
-        /*
-          This must be a controlled component
-        */
-       
       />
     </form>
     <section className="appointment__validation">{error}</section>
@@ -61,4 +57,3 @@ const [error, setError] = useState("")
 </main>
   )
 }
-//() => props.onSave(name, interviewer)

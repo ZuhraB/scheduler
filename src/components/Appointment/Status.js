@@ -1,5 +1,5 @@
 import React from 'react';
-export default function Empty(props) {
+export default function Status(props) {
   return(
   <main className="appointment__card appointment__card--status">
     <img

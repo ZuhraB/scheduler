@@ -4,7 +4,7 @@ Interview Scheduler is a simple interview appointment scheduling tool. It is a r
 
 The technologies that are used in this project include: React, SASS, WebPack, Babel, Axios, Node.js, Express, Postgres server-side, and Storybook, Testing Library, WebPack Dev Server, Jest, and Cypress. testing.
 
-you can visit it online at  https://http://localhost:8000/. 
+you can visit it online at localhost:8000
 
 # This is how the final project looks like: 
 !["Screenshot initial page of scheduler app"](https://github.com/ZuhraB/scheduler/blob/master/docs/Initial%20Page.png?raw=true)

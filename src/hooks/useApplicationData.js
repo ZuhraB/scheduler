@@ -25,12 +25,11 @@ export function useApplicationData() {
       }));
     });
   }, []);
-
+// updates remaining spots without having to to refresh 
   const remainingSpots = (state) => {
     const newState = { ...state };
     const days = newState.days.map((day) => {
       const spots = day.appointments.reduce((spots, id) => {
-         console.log(`spots inside reduce with day=${day}:`, spots)
         if (newState.appointments[id].interview === null) {
           return spots + 1;
         }
@@ -40,13 +39,12 @@ export function useApplicationData() {
     });
     return days;
   };
-
+// givent an id and an interview creats the interview object 
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
     };
-    console.log("appointment:", appointment)
     return axios.put(`/api/appointments/${id}`, appointment).then(() => {
       setState((prev) => ({
         ...prev,
@@ -62,19 +60,20 @@ export function useApplicationData() {
       }));
     });
   }
+  //given an appoitment id and an interview object cancels the interveiw in the appointment state
   function cancelInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview,
     };
-    console.log('int:', interview)
-    console.log('appoint:',appointment);
+    
+    
     const appointments = {
       ...state.appointments,
       [id]: appointment,
     };
     return axios
-      .delete(`http://localhost:8080/api/appointments/${id}`)
+      .delete(`/api/appointments/${id}`)
       .then(() => {
         setState((prev) => ({
           ...prev,
